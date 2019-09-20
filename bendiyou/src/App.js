@@ -1,15 +1,14 @@
 import React,{Component} from "react";
 
 import {Route,Redirect,Switch,withRouter} from "react-router-dom";
-import {Menu,Icon,Badge } from "antd";
+import {Menu,Icon,Badge ,Row,Col} from "antd";
 import {connect} from "react-redux";
 
-import Home from "@/Home";
-import Mine from "@/Mine";
-import Cart from "@/Cart";
-import Discover from "@/Discover";
-
-import Goods from "@/Goods";
+import Home from "./pages/Home";
+import Feilei from "./pages/Fenlei";
+import Shop from "./pages/Shop";
+import Cart from "./pages/Cart";
+import Mine from "./pages/Mine";
 
 // 引入store
 // import store from "./redux/store";
@@ -23,11 +22,17 @@ class App extends Component{
             icon:"home",
             name:"home"
         },{
-            path:"/discover",
-            text:"发现",
-            icon:"eye",
-            name:"discover"
+            path:"/fenlei",
+            text:"分类",
+            icon:"appstore",
+            name:"fenlei"
         },{
+            path:"/shop",
+            text:"店铺",
+            icon:"gift",
+            name:"shop"
+        },
+        {
             path:"/cart",
             text:"购物车",
             icon:"shopping-cart",
@@ -39,17 +44,17 @@ class App extends Component{
             name:"mine"
         }]
     }
-    goto=(path)=>{
-        this.props.history.push(path)
-    }
-    changeMenu=({key})=>{
-        this.setState({
-            current:key
-        })
-        this.goto(key)
-    }
+    // goto=(path)=>{
+    //     this.props.history.push(path)
+    // }
+    // changeMenu=({key})=>{
+    //     this.setState({
+    //         current:key
+    //     })
+    //     this.goto(key)
+    // }
     render(){
-        console.log(this.props);
+        // console.log(this.props);
         
 
         let {cartlength} =this.props;
@@ -57,12 +62,15 @@ class App extends Component{
         return(
         <div>
             <Menu 
-            onClick={this.changeMenu} 
-            selectedKeys={[this.state.current]} 
+            // onClick={this.changeMenu} 
+            // selectedKeys={[this.state.current]} 
             mode="horizontal">
+                <Row type="flex" justify="space-around">
                 {
                     this.state.menu.map((item)=>{
-                        return <Menu.Item key={item.path}>
+                      
+                        return      <Col key={item.path}>
+                            <Menu.Item>
                             {
                                 item.name ==="cart"?
                                 <Badge count={cartlength}>
@@ -77,33 +85,36 @@ class App extends Component{
                             }
                         
                         </Menu.Item>
+                         </Col>
+                        
                     })
                 }
+                </Row>
             </Menu>
             <div>
                 <Switch>
                     <Route path="/home" component={Home}></Route>
-                    <Route path="/discover" component={Discover}></Route>
+                    <Route path="/fenlei" component={Feilei}></Route>
+                    <Route path="/shop" component={Shop}></Route>
                     <Route path="/cart" component={Cart}></Route>
                     <Route path="/mine" component={Mine}></Route>
                     {/* 动态路由 */}
-                    <Route path="/goods/:id" component={Goods}></Route>
-
+                    {/* <Route path="/goods/:id" component={Goods}></Route> */}
                     <Route path="/notfound" render={()=><div>404 not found</div>}></Route>
                     <Redirect from="/" to="/home" exact></Redirect>
                     <Redirect from="*" to="/notfound"></Redirect>
-
                 </Switch>
             </div>
         </div>)
     }
 }
-App = withRouter(App);
 
-let mapStateToProps =(state)=>{
-    return {
-        cartlength:state.cart.goodslist.length
-    }
-}
-App =connect(mapStateToProps)(App);
+// App = withRouter(App);
+
+// let mapStateToProps =(state)=>{
+//     return {
+//         cartlength:state.cart.goodslist.length
+//     }
+// }
+// App =connect(mapStateToProps)(App);
 export default App;
