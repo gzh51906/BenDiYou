@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 
 import {Route,Redirect,Switch,withRouter} from "react-router-dom";
-import {Menu,Icon,Badge ,Row,Col} from "antd";
+import {Menu,Icon,Badge} from "antd";
 import {connect} from "react-redux";
 
 import Home from "./pages/Home";
@@ -10,8 +10,6 @@ import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import Mine from "./pages/Mine";
 
-// 引入store
-// import store from "./redux/store";
 
 class App extends Component{
     state={
@@ -44,52 +42,77 @@ class App extends Component{
             name:"mine"
         }]
     }
-    // goto=(path)=>{
-    //     this.props.history.push(path)
-    // }
-    // changeMenu=({key})=>{
-    //     this.setState({
-    //         current:key
-    //     })
-    //     this.goto(key)
-    // }
+    goto=(path)=>{
+        this.props.history.push(path)
+    }
+    changeMenu=({key})=>{
+        this.setState({
+            current:key
+        })
+        this.goto(key)
+    }
     render(){
-        // console.log(this.props);
-        
-
         let {cartlength} =this.props;
         
         return(
         <div>
             <Menu 
-            // onClick={this.changeMenu} 
-            // selectedKeys={[this.state.current]} 
-            mode="horizontal">
-                <Row type="flex" justify="space-around">
+            onClick={this.changeMenu} 
+            selectedKeys={[this.state.current]} 
+            mode="horizontal"
+            style={{
+                position:"fixed",
+                left:0,
+                bottom:0,
+                display:"flex",
+                boxShadow: "0 0 10px 0 hsla(0, 6%, 58%, 0.6)",
+                width:"100%",
+                color: "#929292"
+
+            }}
+            >
                 {
                     this.state.menu.map((item)=>{
-                      
-                        return      <Col key={item.path}>
-                            <Menu.Item>
+                        return <Menu.Item
+                         key={item.name}
+                          style={{
+                              padding:"0px 10px 0px 10px",
+                              boxSizing:"border-box",
+                              height:50,
+                              flex:1,
+                              margin:0,
+                              textAlign:"center",
+                              lineHeight:2,
+                              borderBottom:0
+                              }}>
                             {
                                 item.name ==="cart"?
                                 <Badge count={cartlength}>
-                                    <Icon type={item.icon} />
+                                    <Icon 
+                                    type={item.icon}
+                                     style={{
+                                         display:"block",
+                                        fontSize:22,
+                                       margin:"0px 0px 7px 0px"
+                                     }}/>
                                     {item.text}
                                 </Badge>
                                 :
                                <>
-                                <Icon type={item.icon} />
+                                <Icon 
+                                type={item.icon}
+                                 style={{
+                                     display:"block",
+                                     fontSize:22,
+                                     margin:0
+                                     }}/>
                                     {item.text}
                                </>
                             }
                         
                         </Menu.Item>
-                         </Col>
-                        
                     })
                 }
-                </Row>
             </Menu>
             <div>
                 <Switch>
@@ -109,12 +132,12 @@ class App extends Component{
     }
 }
 
-// App = withRouter(App);
+App = withRouter(App);
 
-// let mapStateToProps =(state)=>{
-//     return {
-//         cartlength:state.cart.goodslist.length
-//     }
-// }
-// App =connect(mapStateToProps)(App);
+let mapStateToProps =(state)=>{
+    return {
+        cartlength:state.cart.goodslist.length
+    }
+}
+App =connect(mapStateToProps)(App);
 export default App;
