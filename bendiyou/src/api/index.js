@@ -1,11 +1,11 @@
 import axios from "axios";
 
-let nanshigou =axios.create({
-    baseURL:"https://www.nanshig.com/mobile/index.php"
+let bendihome =axios.create({
+    baseURL:"http://localhost:1906/home"
 })
 
 async function get(params){
-    let {data} =await nanshigou.get("",{
+    let {data} =await bendihome.get("",{
     params
 })
 return data;

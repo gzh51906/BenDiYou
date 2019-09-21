@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 
 import {Route,Redirect,Switch,withRouter} from "react-router-dom";
-import {Menu,Icon,Badge} from "antd";
+import {Menu,Icon,Badge,BackTop} from "antd";
 import {connect} from "react-redux";
 
 import Home from "./pages/Home";
@@ -55,7 +55,17 @@ class App extends Component{
         let {cartlength} =this.props;
         
         return(
-        <div>
+        <div style={{height:2000}}>
+            {/* 回到顶部按钮 */}
+              <BackTop style={{
+                  zIndex:999,
+                  left:20
+                  }}>
+                    
+            <div className="ant-back-top-inner">
+                <Icon type="rocket"></Icon>
+            </div>
+            </BackTop>
             <Menu 
             onClick={this.changeMenu} 
             selectedKeys={[this.state.current]} 
@@ -67,7 +77,8 @@ class App extends Component{
                 display:"flex",
                 boxShadow: "0 0 10px 0 hsla(0, 6%, 58%, 0.6)",
                 width:"100%",
-                color: "#929292"
+                color: "#929292",
+                zIndex:99
 
             }}
             >
@@ -83,7 +94,7 @@ class App extends Component{
                               margin:0,
                               textAlign:"center",
                               lineHeight:2,
-                              borderBottom:0
+                              borderBottom:0,
                               }}>
                             {
                                 item.name ==="cart"?

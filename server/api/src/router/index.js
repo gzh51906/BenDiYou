@@ -10,6 +10,7 @@ const {
 // 引入路由文件
 const cartRouter = require('./goods');
 const userRouter = require('./user');
+const homeRouter = require('./home');
 
 const indexdata = require("./getindexdata");
 
@@ -34,7 +35,7 @@ Router.use((req, res, next) => {
 // 商品
 Router.use('/goods', cartRouter);
 Router.use('/user', userRouter);
-
+Router.use('/home', homeRouter);
 Router.use('/getindexdata', indexdata);
 
 Router.get('/verify', (req, res) => {
