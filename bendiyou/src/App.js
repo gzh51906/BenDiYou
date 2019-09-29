@@ -9,6 +9,7 @@ import Feilei from "./pages/Fenlei";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import Mine from "./pages/Mine";
+import Detail from "./pages/Detail"
 
 
 class App extends Component{
@@ -132,6 +133,7 @@ class App extends Component{
                     <Route path="/shop" component={Shop}></Route>
                     <Route path="/cart" component={Cart}></Route>
                     <Route path="/mine" component={Mine}></Route>
+                    <Route path="/detail" component={Detail}></Route>
                     {/* 动态路由 */}
                     {/* <Route path="/goods/:id" component={Goods}></Route> */}
                     <Route path="/notfound" render={()=><div>404 not found</div>}></Route>

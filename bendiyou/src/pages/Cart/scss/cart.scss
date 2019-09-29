@@ -1,0 +1,27 @@
+body{
+      button{
+          margin: 6px;
+        .anticon{
+            color:red;
+            svg{
+                width: 20px;
+                height: 20px;
+            }
+        }
+      }
+      .more{
+          float: right;
+          margin:7px 14px;
+      }
+      .ant-dropdown-menu{
+        background: rgba(85,85,85,0.55);
+        width: 125px;
+        .ant-dropdown-menu-item{
+            color: #fff;
+            padding:12.5px;
+            font-size: 15px;
+            border-bottom-color: #CCC;
+            border-bottom: solid 2px #999;
+        }
+      }
+}
