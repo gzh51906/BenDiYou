@@ -36,6 +36,20 @@ class DetailMain extends Component {
                 </dl>
                 <span className="sold">人气：<b id="sell-rq">82</b></span>
             </div>
+            <div className="goods-detail-item">
+                <div className="item-name">送至</div>
+                <div className="item-con">
+                    <a href="javascript:void(0);" id="get_area_selected">
+                        <dl className="goods-detail-freight">
+                            <dt><span id="get_area_selected_name">湖北省 黄石市 黄石港区</span><strong id="get_area_selected_whether">有货</strong></dt>
+                            <dd id="get_area_selected_content">运费：5.00 元</dd>
+                        </dl>
+                    </a>
+                </div>
+                <div id="getTime">该商品可配送时间：09:00-17:00，现在购买，预计今天10:30前送达</div>
+                <div className="item-more location"></div>
+            </div>
+            
         </div>
     }
 }

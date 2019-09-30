@@ -139,4 +139,32 @@ body {
             height: 28px;
         }
     }
+    .goods-detail-item {
+        position: relative;
+        z-index: 1;
+        padding: 12.5px;
+        background: #FFF;
+        border-bottom: solid 2px #EEE;
+        .item-name {
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+            font-size: 15px;
+            color: #888;
+            line-height: 19px;
+        }
+        .item-con dt {
+            font-size: 15px;
+            color: #333;
+             strong {
+                color: #ED5564;
+                margin-left: 12.5px;
+                font-size: 15px;
+            }
+        }
+       
+    }
+    .menu{
+        z-index: 99,
+    }
 }
